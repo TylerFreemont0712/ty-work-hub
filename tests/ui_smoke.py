@@ -93,7 +93,7 @@ def isolated_workspace(app):
 def main():
     app = QApplication([])
     with isolated_workspace(app) as folder:
-        root = Path(folder)
+        root = Path(folder).resolve()
         vault = root / "Vault"
         vault.mkdir()
         working_copy = root / "Working Copy 日本"

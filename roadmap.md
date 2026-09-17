@@ -9,7 +9,7 @@ Last reviewed: 2026-09-17
 - Added a standalone Git workspace alongside the SVN ticket shelf: status, working-tree/staged diffs, staging, unstaging, reviewed commits, fetch, fast-forward pull, push, retained stashes, and binary-capable tracked patch exports. Remote authentication uses Git's configured credential helpers or SSH agent.
 - Added Settings → Git for default provider, repository, executable discovery, and explicit package-manager installation. Existing SVN profiles retain their default provider. Linux package installation uses native polkit authorization, with manual instructions when unavailable.
 - Added Linux setup/launch scripts, portable font fallbacks, system-keyring guidance, and Windows/Ubuntu CI. Fresh installs use generic Backlog setup and localhost AI defaults; saved preferences remain intact.
-- Verified Git integration and desktop regression checks on Windows and Ubuntu WSL, plus a native Wayland window. Fixed timestamp ties in SVN patch ordering and case-sensitive path handling on Linux. Real SVN integration passes on Windows; the CI Ubuntu job installs SVN before running that check.
+- Verified Git integration and desktop regression checks on Windows and Ubuntu WSL, plus native Wayland and X11 windows. Fixed timestamp ties in SVN patch ordering, case-sensitive path handling on Linux, and canonical vault paths for Windows aliases and Linux symlinks. Real SVN integration passes on Windows and Ubuntu.
 - Remaining desktop-specific verification: interactive keyring unlock and administrator prompts on each Linux distribution. Installer command plans are tested without modifying a user's production machine.
 
 ## Work timer, schedule, and time insights (2026-09-09) — Completed

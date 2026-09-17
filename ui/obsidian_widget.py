@@ -290,7 +290,9 @@ class ObsidianWidget(QWidget):
         return match.group(1).strip() if match else ""
 
     def set_vault_path(self, value: str) -> None:
-        self.vault_path = Path(value).expanduser() if value else Path()
+        # Match load_path's canonical form, including Windows short-path aliases
+        # and Linux symlinked vault folders, before computing relative paths.
+        self.vault_path = Path(value).expanduser().resolve() if value else Path()
         valid = bool(value and self.vault_path.is_dir())
         self.configure_vault.setVisible(not valid)
         self.browser_panel.setVisible(valid)

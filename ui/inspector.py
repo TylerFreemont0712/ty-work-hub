@@ -76,7 +76,7 @@ def build_inspector(self) -> QWidget:
     self.note.setProperty("secondary", True)
     self.source_control_button = QPushButton("Source control")
     self.source_control_button.setProperty("secondary", True)
-    self.source_control_button.setToolTip("Open this ticket's SVN workspace (Ctrl+Alt+S)")
+    self.source_control_button.setToolTip("Open your preferred Git or SVN workspace (Ctrl+Alt+S)")
     workspace_row.addWidget(self.note)
     workspace_row.addWidget(self.source_control_button)
     work_layout.addLayout(workspace_row)

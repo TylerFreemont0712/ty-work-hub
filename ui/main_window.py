@@ -1182,11 +1182,11 @@ class MainWindow(ShellMixin, QMainWindow):
     def open_backlog_dashboard(self) -> None:
         webbrowser.open(self.config["backlog_web_url"] + "/dashboard?from_globalbar")
 
-    def open_source_control(self, action: str = "") -> None:
+    def open_source_control(self, action: str = "", *, provider: str | None = None) -> None:
         self.navigate("Source Control")
         # Patch shelf actions are explicitly SVN workflows. Generic commands use
         # the chosen provider, so Git works without a selected Backlog ticket.
-        if self.config.get("source_control_provider", "git") == "git" and str(action) in {"", "status", "diff", "compare", "update"}:
+        if (provider or self.config.get("source_control_provider", "git")) == "git" and str(action) in {"", "status", "diff", "compare", "update"}:
             self.source_workspaces.setCurrentWidget(self.git)
             if str(action) in {"diff", "compare"}:
                 self.git.show_diff()
@@ -1231,7 +1231,7 @@ class MainWindow(ShellMixin, QMainWindow):
         if isinstance(issue, dict) and issue:
             self.current = issue
             self.source_control.set_ticket(issue)
-        self.open_source_control(str(action or ""))
+        self.open_source_control(str(action or ""), provider="svn")
 
     def persist_preference(self, key: str, value) -> None:
         self.config[str(key)] = value

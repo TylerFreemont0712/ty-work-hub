@@ -330,6 +330,12 @@ def main():
         assert window.stack.currentWidget() is window.source_workspaces
         assert window.source_workspaces.currentWidget() is window.source_control
         assert window.source_control.ticket_key.text() == issues[0]["key"]
+        window.config["source_control_provider"] = "git"
+        window.open_source_control()
+        assert window.source_workspaces.currentWidget() is window.git
+        window.source_control_action("open", issues[0])
+        assert window.source_workspaces.currentWidget() is window.source_control
+        window.config["source_control_provider"] = "svn"
         assert window.source_control.current_root() == str(working_copy)
         source_changes = [
             SvnChange("src/日本 file.txt", "modified", revision="42"),
